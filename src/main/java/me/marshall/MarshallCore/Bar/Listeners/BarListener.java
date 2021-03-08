@@ -117,7 +117,4 @@ public class BarListener implements Listener {
     }
 
 
-    public void onGambleConsumption(PlayerItemConsumeEvent event) {
-
-    }
 }
