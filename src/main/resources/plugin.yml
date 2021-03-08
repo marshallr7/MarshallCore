@@ -3,7 +3,7 @@ version: ${project.version}
 main: me.marshall.MarshallCore.Core
 api-version: 1.13
 authors: [Marshall]
-description: Menu Manager
+description: Marshall Core
 website: https://www.github.com/marshallr7
 commands:
   examplecommand:
