@@ -4,14 +4,18 @@ import me.marshall.MarshallCore.Bar.Commands.BarCommand;
 import me.marshall.MarshallCore.Bar.Listeners.BarListener;
 import me.marshall.MarshallCore.Bar.Commands.GambleCommand;
 import me.marshall.MarshallCore.Bar.Listeners.GambleListener;
-import me.marshall.MarshallCore.MenuSystem.Commands.ExampleCommand;
-import me.marshall.MarshallCore.MenuSystem.Listeners.MenuListener;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public final class Core extends JavaPlugin {
@@ -19,6 +23,9 @@ public final class Core extends JavaPlugin {
     private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
     private static Economy econ = null;
     private static Core plugin;
+
+    private File customMobHunterFile;
+    private FileConfiguration customMobHunterConfig;
 
     public static Core getInstance() {
         return plugin;
@@ -29,22 +36,39 @@ public final class Core extends JavaPlugin {
     }
 
 
-
+    //####################################
+    //           ON ENABLE
+    //####################################
     @Override
     public void onEnable() {
         plugin = this;
+        // CONFIGS
+        plugin.saveDefaultConfig();
+        createSlayerConfig();
 
-        // EXAMPLE
-        getCommand("examplecommand").setExecutor(new ExampleCommand());
-        getServer().getPluginManager().registerEvents(new MenuListener(), this);
 
-        //BAR
-        getCommand("bar").setExecutor(new BarCommand());
-        getServer().getPluginManager().registerEvents(new BarListener(), this);
 
-        //BAR GAMBLE
-        getCommand("bargamble").setExecutor(new GambleCommand());
-        getServer().getPluginManager().registerEvents(new GambleListener(), this);
+
+        // BAR
+        if (plugin.getConfig().getBoolean("bar")) {
+            getCommand("bar").setExecutor(new BarCommand());
+            getServer().getPluginManager().registerEvents(new BarListener(), this);
+            Bukkit.getConsoleSender().sendRawMessage("Bar Enabled");
+        } else {
+            Bukkit.getConsoleSender().sendRawMessage("Bar is set to disabled in the config and will not load.");
+        }
+        // BAR GAMBLE
+        if (plugin.getConfig().getBoolean("bargamble")) {
+            getCommand("bargamble").setExecutor(new GambleCommand());
+            getServer().getPluginManager().registerEvents(new GambleListener(), this);
+            Bukkit.getConsoleSender().sendRawMessage("Bar Gamble Enabled");
+        } else {
+            Bukkit.getConsoleSender().sendRawMessage("Bar Gamble is set to disabled in the config and will not load.");
+        }
+
+
+
+
 
 
         //Vault Check
@@ -53,13 +77,18 @@ public final class Core extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-
     }
+
+
+
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
     }
+
+
+
+
 
     public static PlayerMenuUtility getPlayerMenuUtility(Player player) {
         PlayerMenuUtility playerMenuUtility;
@@ -86,6 +115,25 @@ public final class Core extends JavaPlugin {
         return true;
     }
 
+
+    public FileConfiguration getSlayerConfig() {
+        return this.customMobHunterConfig;
+    }
+
+    private void createSlayerConfig() {
+        customMobHunterFile = new File(getDataFolder(), "/mobhunter.yml");
+        if (!customMobHunterFile.exists()) {
+            customMobHunterFile.getParentFile().mkdirs();
+            saveResource("mobhunter.yml", false);
+        }
+
+        customMobHunterConfig = new YamlConfiguration();
+        try {
+            customMobHunterConfig.load(customMobHunterFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
