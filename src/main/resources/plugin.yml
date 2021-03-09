@@ -8,3 +8,7 @@ website: https://www.github.com/marshallr7
 commands:
   examplecommand:
     description:
+  bar:
+    description:
+  bargamble:
+    description:
