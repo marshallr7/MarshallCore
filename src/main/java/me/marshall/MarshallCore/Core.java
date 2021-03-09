@@ -1,5 +1,9 @@
 package me.marshall.MarshallCore;
 
+import me.marshall.MarshallCore.Bar.Commands.BarCommand;
+import me.marshall.MarshallCore.Bar.Listeners.BarListener;
+import me.marshall.MarshallCore.Bar.Commands.GambleCommand;
+import me.marshall.MarshallCore.Bar.Listeners.GambleListener;
 import me.marshall.MarshallCore.MenuSystem.Commands.ExampleCommand;
 import me.marshall.MarshallCore.MenuSystem.Listeners.MenuListener;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
@@ -30,8 +34,17 @@ public final class Core extends JavaPlugin {
     public void onEnable() {
         plugin = this;
 
+        // EXAMPLE
         getCommand("examplecommand").setExecutor(new ExampleCommand());
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
+
+        //BAR
+        getCommand("bar").setExecutor(new BarCommand());
+        getServer().getPluginManager().registerEvents(new BarListener(), this);
+
+        //BAR GAMBLE
+        getCommand("bargamble").setExecutor(new GambleCommand());
+        getServer().getPluginManager().registerEvents(new GambleListener(), this);
 
 
         //Vault Check
@@ -72,5 +85,7 @@ public final class Core extends JavaPlugin {
         econ = rsp.getProvider();
         return true;
     }
+
+
 
 }
