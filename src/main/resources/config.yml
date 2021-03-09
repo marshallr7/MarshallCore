@@ -1,3 +1,4 @@
 #Enable and disable different modules. "true" to enable, "false" to disable.
 bar: true
 bargamble: true
+mobhunter: true
