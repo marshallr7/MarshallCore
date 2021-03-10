@@ -7,7 +7,9 @@ import me.marshall.MarshallCore.Bar.Listeners.GambleListener;
 import me.marshall.MarshallCore.MenuSystem.Listeners.MenuListener;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import me.marshall.MarshallCore.MobHunter.Commands.MobHunterCommand;
+import me.marshall.MarshallCore.MobHunter.Commands.MobHunterNPC;
 import me.marshall.MarshallCore.MobHunter.Listeners.MobHunterListener;
+import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -73,6 +75,7 @@ public final class Core extends JavaPlugin {
         if (plugin.getConfig().getBoolean("mobhunter")) {
             getCommand("mobhunter").setExecutor(new MobHunterCommand());
             getServer().getPluginManager().registerEvents(new MobHunterListener(), this);
+            getCommand("mobhunternpc").setExecutor(new MobHunterNPC());
             Bukkit.getConsoleSender().sendRawMessage("Mob Hunter Enabled");
         } else {
             Bukkit.getConsoleSender().sendRawMessage("Mob Hunter is set to disabled in the config and will not load.");
