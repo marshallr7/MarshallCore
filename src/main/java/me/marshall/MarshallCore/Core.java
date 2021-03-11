@@ -12,6 +12,7 @@ import me.marshall.MarshallCore.MobHunter.Listeners.MobHunterListener;
 import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -50,13 +51,6 @@ public final class Core extends JavaPlugin {
         // CONFIGS
         plugin.saveDefaultConfig();
         createSlayerConfig();
-
-        if (plugin.getConfig().getBoolean("mobhunter")) {
-            if (getServer().getPluginManager().getPlugin("MythicMobs") != null) {
-                getServer().getPluginManager().disablePlugin(this);
-            }
-
-        }
 
         //MENU LISTENER
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
