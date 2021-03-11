@@ -19,15 +19,15 @@ public class Items {
         return blackStainedGlassPane;
     }
 
-    public static ItemStack mobHunterSkull(String url, String name) {
+    public static ItemStack mobHunterSkull(String url, String name, String[] loreLines) {
         String skin = url;
         ItemStack skull = SkullCreator.itemFromUrl(skin);
         ItemMeta skullMeta = skull.getItemMeta();
         skullMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.translateAlternateColorCodes('&', " "));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Click here to view"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', name + " &7contracts."));
+        for (int i = 0; i <= loreLines.length-1; i++) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', loreLines[i]));
+        }
         skullMeta.setLore(lore);
         skull.setItemMeta(skullMeta);
         return skull;
