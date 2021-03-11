@@ -1,8 +1,11 @@
 package me.marshall.MarshallCore.MobHunter.Menus;
 
+import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MenuSystem.Items;
 import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
+import me.marshall.MarshallCore.MobHunter.Menus.MobMenus.Dementor;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -29,6 +32,9 @@ public class MobHunterMenu extends Menu implements Listener {
         switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
             case "&f":
                 break;
+            case "§cDementor":
+                Dementor menu = new Dementor(Core.getPlayerMenuUtility(player));
+                menu.open();
 
         }
     }
@@ -48,7 +54,8 @@ public class MobHunterMenu extends Menu implements Listener {
         inventory.setItem(8, Items.blackStainedGlass());
         //ROW 2
         inventory.setItem(9, Items.blackStainedGlass());
-        inventory.setItem(10, Items.mobHunterSkull("http://textures.minecraft.net/texture/ba4e9a4accacc51a7cd21a16b3fd8863ff3a89ae544489315b8d35d1402f69b", "&cDementor"));
+        String[] dementorLore = {"&f", "&7Click here to view", "&cDementor &7contracts."};
+        inventory.setItem(10, Items.mobHunterSkull("http://textures.minecraft.net/texture/ba4e9a4accacc51a7cd21a16b3fd8863ff3a89ae544489315b8d35d1402f69b", "&cDementor", dementorLore));
 
 
 
