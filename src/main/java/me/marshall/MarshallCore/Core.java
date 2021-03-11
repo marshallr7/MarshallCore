@@ -51,7 +51,12 @@ public final class Core extends JavaPlugin {
         plugin.saveDefaultConfig();
         createSlayerConfig();
 
+        if (plugin.getConfig().getBoolean("mobhunter")) {
+            if (getServer().getPluginManager().getPlugin("MythicMobs") != null) {
+                getServer().getPluginManager().disablePlugin(this);
+            }
 
+        }
 
         //MENU LISTENER
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
