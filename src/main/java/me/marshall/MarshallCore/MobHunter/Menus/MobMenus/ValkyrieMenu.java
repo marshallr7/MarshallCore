@@ -5,15 +5,15 @@ import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class Dementor extends Menu {
+public class ValkyrieMenu extends Menu {
 
-    public Dementor(PlayerMenuUtility playerMenuUtility) {
+    public ValkyrieMenu(PlayerMenuUtility playerMenuUtility) {
         super(playerMenuUtility);
     }
 
     @Override
     public String getMenuName() {
-        return "Dementor";
+        return "Valkyrie Contracts";
     }
 
     @Override
@@ -41,8 +41,8 @@ public class Dementor extends Menu {
         //second row
         inventory.setItem(9, Items.blackStainedGlass());
         inventory.setItem(10, Items.blackStainedGlass());
-        String[] dementorTierOne = {"test", "test1", "test3"};
-        inventory.setItem(10, Items.mobHunterSkull("http://textures.minecraft.net/texture/ba4e9a4accacc51a7cd21a16b3fd8863ff3a89ae544489315b8d35d1402f69b", "&cDementor", dementorTierOne));
+        String[] valkyrieTierOne = {"test", "test1", "test3"};
+        inventory.setItem(11, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4Valkyrie", valkyrieTierOne));
 
 
 
@@ -52,13 +52,30 @@ public class Dementor extends Menu {
         inventory.setItem(17, Items.blackStainedGlass());
         //third row
         inventory.setItem(18, Items.blackStainedGlass());
-        inventory.setItem(26, Items.blackStainedGlass());
-        inventory.setItem(27, Items.blackStainedGlass());
+        inventory.setItem(19, Items.blackStainedGlass());
+        inventory.setItem(20, Items.blackStainedGlass());
+        inventory.setItem(21, Items.blackStainedGlass());
         inventory.setItem(22, Items.blackStainedGlass());
         inventory.setItem(23, Items.blackStainedGlass());
         inventory.setItem(24, Items.blackStainedGlass());
         inventory.setItem(25, Items.blackStainedGlass());
         inventory.setItem(26, Items.blackStainedGlass());
+        //FOURTH ROW
         inventory.setItem(27, Items.blackStainedGlass());
+        inventory.setItem(29, Items.blackStainedGlass());
+        inventory.setItem(30, Items.blackStainedGlass());
+        inventory.setItem(32, Items.blackStainedGlass());
+        inventory.setItem(33, Items.blackStainedGlass());
+        inventory.setItem(35, Items.blackStainedGlass());
+        //FIFTH ROW
+        inventory.setItem(36, Items.blackStainedGlass());
+        inventory.setItem(37, Items.blackStainedGlass());
+        inventory.setItem(38, Items.blackStainedGlass());
+        inventory.setItem(39, Items.blackStainedGlass());
+        inventory.setItem(40, Items.blackStainedGlass());
+        inventory.setItem(41, Items.blackStainedGlass());
+        inventory.setItem(42, Items.blackStainedGlass());
+        inventory.setItem(43, Items.blackStainedGlass());
+        inventory.setItem(44, Items.blackStainedGlass());
     }
 }
