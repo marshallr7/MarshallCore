@@ -11,14 +11,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 public class MobHunterListener implements Listener {
 
-
-
-
-
-
-
+    HashMap<UUID, Integer> mobsKilled = new HashMap<>();
 
 
 
