@@ -4,7 +4,7 @@ import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MenuSystem.Items;
 import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
-import me.marshall.MarshallCore.MobHunter.Menus.MobMenus.Dementor;
+import me.marshall.MarshallCore.MobHunter.Menus.MobMenus.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -32,9 +32,27 @@ public class MobHunterMenu extends Menu implements Listener {
         switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
             case "&f":
                 break;
-            case "§cDementor":
-                Dementor menu = new Dementor(Core.getPlayerMenuUtility(player));
-                menu.open();
+            case "§4§lValkyrie":
+                ValkyrieMenu valkyrieMenu = new ValkyrieMenu(Core.getPlayerMenuUtility(player));
+                valkyrieMenu.open();
+                break;
+            case "§8§lOdin":
+                OdinMenu odinMenu = new OdinMenu(Core.getPlayerMenuUtility(player));
+                odinMenu.open();
+                break;
+            case "§b§lYmir":
+                YmirMenu ymirMenu = new YmirMenu(Core.getPlayerMenuUtility(player));
+                ymirMenu.open();
+                break;
+            case "§6§lDraugr":
+                DraugrMenu draugrMenu = new DraugrMenu(Core.getPlayerMenuUtility(player));
+                draugrMenu.open();
+                break;
+            case "§f§lNornir":
+                NornirMenu nornirMenu = new NornirMenu(Core.getPlayerMenuUtility(player));
+                nornirMenu.open();
+                break;
+
 
         }
     }
@@ -54,15 +72,19 @@ public class MobHunterMenu extends Menu implements Listener {
         inventory.setItem(8, Items.blackStainedGlass());
         //ROW 2
         inventory.setItem(9, Items.blackStainedGlass());
-        String[] dementorLore = {"&f", "&7Click here to view", "&cDementor &7contracts."};
-        inventory.setItem(10, Items.mobHunterSkull("http://textures.minecraft.net/texture/ba4e9a4accacc51a7cd21a16b3fd8863ff3a89ae544489315b8d35d1402f69b", "&cDementor", dementorLore));
-
-
-
-
-
-
-
+        inventory.setItem(10, Items.blackStainedGlass());
+        //TODO: ADD LORE TO THE MAIN MENU ITEMS
+        String[] valkyrieLore = {"&f", "&7Click here to view", "&4Valkyrie &7contracts."};
+        inventory.setItem(11, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4&lValkyrie", valkyrieLore));
+        String[] odinLore = {"&f", "&7Click here to view", "&8Odin &7contracts."};
+        inventory.setItem(12, Items.mobHunterSkull("http://textures.minecraft.net/texture/c70413173349cd10e3e574edbefefcf91f4b4843083925e3082a486ff9769975","&8&lOdin", odinLore));
+        String[] ymirLore = {"&f", "&7Click here to view", "&bYmir &7contracts."};
+        inventory.setItem(13, Items.mobHunterSkull("http://textures.minecraft.net/texture/5043a42a20d7c474df1bd74c3ac8502e427064a7d0111bc8347dc84236888377", "&b&lYmir", ymirLore));
+        String[] draugrLore = {"&f", "&7Click here to view", "&6Dragugar &7contracts."};
+        inventory.setItem(14, Items.mobHunterSkull("http://textures.minecraft.net/texture/32e2d0ed14c23862666b405aefabc65a57a271e842fda5f4d19e6bc118ce0c94", "&6&lDraugr", draugrLore));
+        String[] nornirLore = {"&f", "&7Click here to view", "&fNornir &7contracts."};
+        inventory.setItem(15, Items.mobHunterSkull("http://textures.minecraft.net/texture/cc3b8cc35ffe89b134e9db8842d51eff23811a5794b04ed4a6d8ca4c25234a47", "&f&lNornir", nornirLore));
+        inventory.setItem(16, Items.blackStainedGlass());
         inventory.setItem(17, Items.blackStainedGlass());
         //ROW3
         inventory.setItem(18, Items.blackStainedGlass());
