@@ -33,4 +33,17 @@ public class Items {
         return skull;
     }
 
+    public static ItemStack mobHunterNoPermission() {
+        ItemStack item = new ItemStack(Material.COAL_BLOCK, 1);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&cYou can not view this hunt."));
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&f"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Defeat the previous tier"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7to gain access to this hunt."));
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
 }
