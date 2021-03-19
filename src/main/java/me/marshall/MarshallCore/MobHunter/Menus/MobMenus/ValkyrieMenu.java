@@ -1,9 +1,17 @@
 package me.marshall.MarshallCore.MobHunter.Menus.MobMenus;
 
+import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MenuSystem.Items;
 import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
+import me.marshall.MarshallCore.MobHunter.Menus.ConfirmMenu;
+import me.marshall.MarshallCore.MobHunter.MobHunter;
+import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+
+import java.util.UUID;
 
 public class ValkyrieMenu extends Menu {
 
@@ -23,7 +31,31 @@ public class ValkyrieMenu extends Menu {
 
     @Override
     public void handleMenu(InventoryClickEvent event) {
-
+        Player player = (Player) event.getWhoClicked();
+        UUID playerUUID = player.getUniqueId();
+        ConfirmMenu confirmation = new ConfirmMenu(Core.getPlayerMenuUtility(player));
+        switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
+            case "§4Wise Valkyrie":
+                MobHunter.setAttempt(playerUUID, 10000, "WiseValkyrie");
+                confirmation.open();
+                break;
+            case "§4Zealous Valkyrie":
+                MobHunter.setAttempt(playerUUID, 25000, "ZealousValkyrie");
+                confirmation.open();
+                break;
+            case "§4Troublesome Valkyrie":
+                MobHunter.setAttempt(playerUUID, 50000, "TroublesomeValkyrie");
+                confirmation.open();
+                break;
+            case "§4Belligerent Valkyrie":
+                MobHunter.setAttempt(playerUUID, 75000, "BelligerentValkyrie");
+                confirmation.open();
+                break;
+            case "§4Transcended Valkyrie":
+                MobHunter.setAttempt(playerUUID, 100000, "TranscendedValkyrie");
+                confirmation.open();
+                break;
+        }
     }
 
     @Override
@@ -41,9 +73,32 @@ public class ValkyrieMenu extends Menu {
         //second row
         inventory.setItem(9, Items.blackStainedGlass());
         inventory.setItem(10, Items.blackStainedGlass());
-        String[] valkyrieTierOne = {"test", "test1", "test3"};
-        inventory.setItem(11, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4Valkyrie", valkyrieTierOne));
-
+        String[] valkyrieTierOne = {"&7Difficulty: Easy", "&f", "&7Health: &cxxxx❤", "&7Damage: &cxx &7", "&f", "&aAbility One", "&7Ability one description", "&f", "&2Reward:", "    &7x Valkyrie Hunter Exp", "    &71x Random Valkyrie Drop"};
+        inventory.setItem(11, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4Wise Valkyrie", valkyrieTierOne));
+        if (playerMenuUtility.getOwner().hasPermission("mobhunter.valkyrie.tiertwo")) {
+            String[] valkyrieTierTwo = {"&7Difficulty: Easy", "&f", "&7Health: &cxxxx❤", "&7Damage: &cxx &7", "&f", "&aAbility One", "&7Ability one description", "&f", "&2Reward:", "    &7x Valkyrie Hunter Exp", "    &71x Random Valkyrie Drop"};
+            inventory.setItem(12, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4Zealous Valkyrie", valkyrieTierTwo));
+        } else {
+            inventory.setItem(12, Items.mobHunterNoPermission());
+        }
+        if (playerMenuUtility.getOwner().hasPermission("mobhunter.valkyrie.tierthree")) {
+            String[] valkyrieTierThree = {"&7Difficulty: Easy", "&f", "&7Health: &cxxxx❤", "&7Damage: &cxx &7", "&f", "&aAbility One", "&7Ability one description", "&f", "&2Reward:", "    &7x Valkyrie Hunter Exp", "    &71x Random Valkyrie Drop"};
+            inventory.setItem(13, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4Troublesome Valkyrie", valkyrieTierThree));
+        } else {
+            inventory.setItem(13, Items.mobHunterNoPermission());
+        }
+        if (playerMenuUtility.getOwner().hasPermission("mobhunter.valkyrie.tierfour")) {
+            String[] valkyrieTierThree = {"&7Difficulty: Easy", "&f", "&7Health: &cxxxx❤", "&7Damage: &cxx &7", "&f", "&aAbility One", "&7Ability one description", "&f", "&2Reward:", "    &7x Valkyrie Hunter Exp", "    &71x Random Valkyrie Drop"};
+            inventory.setItem(14, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4Belligerent Valkyrie", valkyrieTierThree));
+        } else {
+            inventory.setItem(14, Items.mobHunterNoPermission());
+        }
+        if (playerMenuUtility.getOwner().hasPermission("mobhunter.valkyrie.tierfive")) {
+                String[] valkyrieTierFive = {"&7Difficulty: Easy", "&f", "&7Health: &cxxxx❤", "&7Damage: &cxx &7", "&f", "&aAbility One", "&7Ability one description", "&f", "&2Reward:", "    &7x Valkyrie Hunter Exp", "    &71x Random Valkyrie Drop"};
+                inventory.setItem(15, Items.mobHunterSkull("http://textures.minecraft.net/texture/376ed41af9553515a1e858f0216f6b2863c1bde87f37f19846737eae7359db05", "&4Transcended Valkyrie", valkyrieTierFive));
+        } else {
+            inventory.setItem(15, Items.mobHunterNoPermission());
+        }
 
 
 
@@ -78,4 +133,7 @@ public class ValkyrieMenu extends Menu {
         inventory.setItem(43, Items.blackStainedGlass());
         inventory.setItem(44, Items.blackStainedGlass());
     }
+
+
+
 }
