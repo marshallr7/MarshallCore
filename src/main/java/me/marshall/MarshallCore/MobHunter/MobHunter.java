@@ -5,14 +5,17 @@ import java.util.UUID;
 
 public class MobHunter {
 
-    public HashMap<UUID, Double> attemptedContractPurchase = new HashMap<>();
-    public HashMap<UUID, String> attemptedContractBoss = new HashMap<>();
+    public static HashMap<UUID, Integer> attemptedContractPurchase = new HashMap<>();
+    public static HashMap<UUID, String> attemptedContractBoss = new HashMap<>();
 
-    public String getAttemptedContractBoss(UUID playerUUID) {
+    public static HashMap<UUID, String> onGoingMobName = new HashMap<>();
+    public static HashMap<UUID, Integer> onGoingMobCount = new HashMap<>();
+
+    public static String getAttemptedContractBoss(UUID playerUUID) {
         return attemptedContractBoss.get(playerUUID);
     }
 
-    public void setAttemptedContractBoss(UUID playerUUID, String mobName) {
+    public static void setAttemptedContractBoss(UUID playerUUID, String mobName) {
         if (attemptedContractBoss.containsKey(playerUUID)) {
             attemptedContractBoss.replace(playerUUID, mobName);
         } else {
@@ -20,16 +23,27 @@ public class MobHunter {
         }
     }
 
-    public Double getAttemptedContractPurchase(UUID playerUUID) {
+    public static Integer getAttemptedContractPurchase(UUID playerUUID) {
         return attemptedContractPurchase.get(playerUUID);
     }
 
-    public void setAttemptedContractPurchase(UUID playerUUID, Double amount) {
+    public static void setAttemptedContractPurchase(UUID playerUUID, Integer amount) {
         if (attemptedContractPurchase.containsKey(playerUUID)) {
             attemptedContractPurchase.replace(playerUUID, amount);
         } else {
             attemptedContractPurchase.put(playerUUID, amount);
         }
+    }
+
+
+    public static void setAttempt(UUID playerUUID, int amount, String name) {
+        setAttemptedContractBoss(playerUUID, name);
+        setAttemptedContractPurchase(playerUUID, amount);
+    }
+
+    public static void removePlayer(UUID playerUUID) {
+        attemptedContractPurchase.remove(playerUUID);
+        attemptedContractBoss.remove(playerUUID);
     }
 
 
