@@ -1,7 +1,11 @@
 package me.marshall.MarshallCore.MobHunter.Listeners;
 
+import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
+import io.lumine.xikage.mythicmobs.mobs.MythicMob;
 import me.marshall.MarshallCore.Core;
+import me.marshall.MarshallCore.MobHunter.Menus.CancelMenu;
 import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
+import me.marshall.MarshallCore.MobHunter.MobHunter;
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -16,11 +20,20 @@ import java.util.UUID;
 
 public class MobHunterListener implements Listener {
 
-    HashMap<UUID, Integer> mobsKilled = new HashMap<>();
 
 
-
-
+//    public void onMobHunterKill(MythicMobDeathEvent event) {
+//        if (!(event.getKiller() instanceof Player)) {
+//            return;
+//        }
+//        Player player = (Player) event.getKiller();
+//        UUID playerUUID = player.getUniqueId();
+//        if (!(MobHunter.onGoingMobName.containsKey(playerUUID))) {
+//            return;
+//        }
+//        MythicMob mob = event.getMobType();
+//        //
+//    }
 
 
 
@@ -34,9 +47,13 @@ public class MobHunterListener implements Listener {
         if (!event.getRightClicked().getCustomName().contains(ChatColor.translateAlternateColorCodes('&', "&fMob Hunter"))) {
             return;
         }
-        MobHunterMenu menu = new MobHunterMenu(Core.getPlayerMenuUtility(player));
-        menu.open();
-
+        if (MobHunter.onGoingMobCount.containsKey(player.getUniqueId())) {
+            CancelMenu cancelMenu = new CancelMenu(Core.getPlayerMenuUtility(player));
+            cancelMenu.open();
+        } else {
+            MobHunterMenu mainMenu = new MobHunterMenu(Core.getPlayerMenuUtility(player));
+            mainMenu.open();
+        }
 
     }
 }
