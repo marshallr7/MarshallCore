@@ -1,5 +1,7 @@
 package me.marshall.MarshallCore.MobHunter;
 
+import org.bukkit.entity.Player;
+
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -10,6 +12,29 @@ public class MobHunter {
 
     public static HashMap<UUID, String> onGoingMobName = new HashMap<>();
     public static HashMap<UUID, Integer> onGoingMobCount = new HashMap<>();
+
+    public static String getOnGoingMobContract(UUID playerUUID) {
+        return onGoingMobName.get(playerUUID);
+    }
+
+    public static Integer getOnGoingMobCount(UUID playerUUID) {
+        return onGoingMobCount.get(playerUUID);
+    }
+
+    public static void setOnGoingContract(UUID playerUUID, String mobName) {
+        onGoingMobName.put(playerUUID, mobName);
+        onGoingMobCount.put(playerUUID, 0);
+    }
+
+    public static void updateOnGoingContract(UUID playerUUID, int amount) {
+        onGoingMobCount.put(playerUUID, onGoingMobCount.get(playerUUID) + 1);
+    }
+
+    public static void removeOnGoingContract(UUID playerUUID) {
+        onGoingMobCount.remove(playerUUID);
+        onGoingMobName.remove(playerUUID);
+    }
+
 
     public static String getAttemptedContractBoss(UUID playerUUID) {
         return attemptedContractBoss.get(playerUUID);
