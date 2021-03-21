@@ -37,9 +37,12 @@ public class ConfirmMenu extends Menu {
         switch (event.getCurrentItem().getType()) {
             case LIME_WOOL:
                 if (econ.getBalance(player) >= MobHunter.getAttemptedContractPurchase(playerUUID)) {
-                    MobHunter.removePlayer(playerUUID);
                     // START CONTRACT HASHMAP
+                    MobHunter.setOnGoingContract(playerUUID, MobHunter.getAttemptedContractBoss(playerUUID));
+                    //REMOVE MONEY
                     econ.withdrawPlayer(player, MobHunter.getAttemptedContractPurchase(playerUUID));
+                    //REMOVE PLAYER FROM ATTEMPTED HASHMAPS
+                    MobHunter.removePlayer(playerUUID);
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fHunter&7] &aContract successfully started"));
                     player.closeInventory();
                     break;
