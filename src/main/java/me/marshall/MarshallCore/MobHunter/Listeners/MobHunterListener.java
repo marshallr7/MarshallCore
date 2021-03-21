@@ -1,22 +1,16 @@
 package me.marshall.MarshallCore.MobHunter.Listeners;
 
-import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
-import io.lumine.xikage.mythicmobs.mobs.MythicMob;
+
 import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MobHunter.Menus.CancelMenu;
 import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
 import me.marshall.MarshallCore.MobHunter.MobHunter;
 import net.md_5.bungee.api.ChatColor;
-import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
-import java.util.HashMap;
-import java.util.UUID;
 
 public class MobHunterListener implements Listener {
 
