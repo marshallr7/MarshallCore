@@ -74,4 +74,17 @@ public class Items {
         item.setItemMeta(itemMeta);
         return item;
     }
+
+
+    public static ItemStack cancelContractItem() {
+        ItemStack item = new ItemStack(Material.BARRIER);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&cCancel current contract"));
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&f"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Click here to cancel your current contract"));
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
 }
