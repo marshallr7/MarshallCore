@@ -1,7 +1,9 @@
 package me.marshall.MarshallCore.MobHunter.Commands;
 
 import me.marshall.MarshallCore.Core;
+import me.marshall.MarshallCore.MobHunter.Menus.CancelMenu;
 import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
+import me.marshall.MarshallCore.MobHunter.MobHunter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,8 +16,13 @@ public class MobHunterCommand implements CommandExecutor {
             if (sender.hasPermission("mobhunter.use")) {
                 Player player = (Player) sender;
 
-                MobHunterMenu menu = new MobHunterMenu(Core.getPlayerMenuUtility(player));
-                menu.open();
+                if (MobHunter.onGoingMobCount.containsKey(player.getUniqueId())) {
+                    CancelMenu cancelMenu = new CancelMenu(Core.getPlayerMenuUtility(player));
+                    cancelMenu.open();
+                } else {
+                    MobHunterMenu mainMenu = new MobHunterMenu(Core.getPlayerMenuUtility(player));
+                    mainMenu.open();
+                }
             }
         }
 
