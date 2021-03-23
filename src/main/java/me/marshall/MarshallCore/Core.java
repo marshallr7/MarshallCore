@@ -1,8 +1,8 @@
 package me.marshall.MarshallCore;
 
 import me.marshall.MarshallCore.Bar.Commands.BarCommand;
-import me.marshall.MarshallCore.Bar.Listeners.BarListener;
 import me.marshall.MarshallCore.Bar.Commands.GambleCommand;
+import me.marshall.MarshallCore.Bar.Listeners.BarListener;
 import me.marshall.MarshallCore.Bar.Listeners.GambleListener;
 import me.marshall.MarshallCore.MenuSystem.Listeners.MenuListener;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
@@ -46,6 +46,17 @@ public final class Core extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        //DIRECTORIES
+        File dataFolder = plugin.getDataFolder();
+        if (!dataFolder.exists()) {
+            dataFolder.mkdir();
+        }
+        File playerDataFolder = new File(dataFolder + "/PlayerData");
+        if (!playerDataFolder.exists()) {
+            playerDataFolder.mkdir();
+            System.out.println("§8[§dMarshallCore§8] §aPlayer data folder created.");
+        }
+
         // CONFIGS
         plugin.saveDefaultConfig();
         createSlayerConfig();
@@ -56,26 +67,26 @@ public final class Core extends JavaPlugin {
         if (plugin.getConfig().getBoolean("bar")) {
             getCommand("bar").setExecutor(new BarCommand());
             getServer().getPluginManager().registerEvents(new BarListener(), this);
-            Bukkit.getConsoleSender().sendRawMessage("Bar Enabled");
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aBar Enabled");
         } else {
-            Bukkit.getConsoleSender().sendRawMessage("Bar is set to disabled in the config and will not load.");
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cBar is set to disabled in the config and will not load.");
         }
         // BAR GAMBLE
         if (plugin.getConfig().getBoolean("bargamble")) {
             getCommand("bargamble").setExecutor(new GambleCommand());
             getServer().getPluginManager().registerEvents(new GambleListener(), this);
-            Bukkit.getConsoleSender().sendRawMessage("Bar Gamble Enabled");
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aBar Gamble Enabled");
         } else {
-            Bukkit.getConsoleSender().sendRawMessage("Bar Gamble is set to disabled in the config and will not load.");
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cBar Gamble is set to disabled in the config and will not load.");
         }
         // MOB HUNTER
         if (plugin.getConfig().getBoolean("mobhunter")) {
             getCommand("mobhunter").setExecutor(new MobHunterCommand());
             getServer().getPluginManager().registerEvents(new MobHunterListener(), this);
             getCommand("mobhunternpc").setExecutor(new MobHunterNPC());
-            Bukkit.getConsoleSender().sendRawMessage("Mob Hunter Enabled");
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aMob Hunter Enabled");
         } else {
-            Bukkit.getConsoleSender().sendRawMessage("Mob Hunter is set to disabled in the config and will not load.");
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cMob Hunter is set to disabled in the config and will not load.");
         }
 
 
@@ -85,7 +96,7 @@ public final class Core extends JavaPlugin {
 
         //Vault Check
         if (!setupEconomy()) {
-            System.out.println("No economy plugin found. Disabling Vault.");
+            System.out.println("§8[§dMarshallCore§8] No economy plugin found. Disabling Vault.");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
