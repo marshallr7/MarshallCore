@@ -11,7 +11,6 @@ import me.marshall.MarshallCore.MobHunter.Menus.CancelMenu;
 import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
 import me.marshall.MarshallCore.MobHunter.MobHunter;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -55,7 +54,6 @@ public class MobHunterListener implements Listener {
         }
 
         MobHunter.updateOnGoingContract(playerUUID);
-        Bukkit.broadcastMessage(MobHunter.onGoingMobCount + "");
 
         AbstractLocation mmLoc = event.getMob().getLocation();
         double mobX = mmLoc.getX();
@@ -65,27 +63,37 @@ public class MobHunterListener implements Listener {
 
         switch (foundMob) {
             case "WiseValkyrie":
-                if (!(foundValue <= wiseValkyrieKills)) {
+                if (!(foundValue < wiseValkyrieKills)) {
+                    return;
+                } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
                 }
                 break;
             case "ZealousValkyrie":
-                if (!(foundValue <= zealousValkyrieKills)) {
+                if (!(foundValue < zealousValkyrieKills)) {
+                    return;
+                } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
                 }
                 break;
             case "TroublesomeValkyrie":
-                if (!(foundValue <= troublesomeValkyrieKills)) {
+                if (!(foundValue < troublesomeValkyrieKills)) {
+                    return;
+                } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
                 }
                 break;
             case "BelligerentValkyrie":
-                if (!(foundValue <= belligerentValkyrieKills)) {
+                if (!(foundValue < belligerentValkyrieKills)) {
+                    return;
+                } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
                 }
                 break;
             case "TranscendedValkyrie":
-                if (!(foundValue <= transcendedValkyrieKills)) {
+                if (!(foundValue < transcendedValkyrieKills)) {
+                    return;
+                } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
                 }
                 break;
