@@ -59,7 +59,7 @@ public final class Core extends JavaPlugin {
 
         // CONFIGS
         plugin.saveDefaultConfig();
-        createSlayerConfig();
+        createMobHunterConfig();
 
         //MENU LISTENER
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
@@ -143,7 +143,7 @@ public final class Core extends JavaPlugin {
         return this.customMobHunterConfig;
     }
 
-    private void createSlayerConfig() {
+    private void createMobHunterConfig() {
         customMobHunterFile = new File(getDataFolder(), "/mobhunter.yml");
         if (!customMobHunterFile.exists()) {
             customMobHunterFile.getParentFile().mkdirs();
