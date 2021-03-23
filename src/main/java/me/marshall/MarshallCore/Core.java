@@ -139,7 +139,7 @@ public final class Core extends JavaPlugin {
     }
 
 
-    public FileConfiguration getSlayerConfig() {
+    public FileConfiguration getMobHunterConfig() {
         return this.customMobHunterConfig;
     }
 
