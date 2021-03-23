@@ -31,7 +31,6 @@ public class MobHunterListener implements Listener {
         Player player = (Player) event.getKiller();
         UUID playerUUID = player.getUniqueId();
         if (!(MobHunter.onGoingMobName.containsKey(playerUUID))) {
-            System.out.println("thisa");
             return;
         }
         MythicMob mob = event.getMobType();
