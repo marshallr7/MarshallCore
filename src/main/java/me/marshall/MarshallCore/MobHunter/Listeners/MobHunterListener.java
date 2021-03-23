@@ -15,12 +15,14 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.UUID;
 
 
@@ -32,6 +34,8 @@ public class MobHunterListener implements Listener {
     final int troublesomeValkyrieKills = plugin.getMobHunterConfig().getInt("troublesomeValkyrieKills");
     final int belligerentValkyrieKills = plugin.getMobHunterConfig().getInt("belligerentValkyrieKills");
     final int transcendedValkyrieKills = plugin.getMobHunterConfig().getInt("transcendedValkyrieKills");
+
+    public HashMap<UUID, Boolean> spawnedBoss = new HashMap<>();
 
 
     @EventHandler
@@ -67,6 +71,7 @@ public class MobHunterListener implements Listener {
                     return;
                 } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                    spawnedBoss.put(playerUUID, true);
                 }
                 break;
             case "ZealousValkyrie":
@@ -74,6 +79,7 @@ public class MobHunterListener implements Listener {
                     return;
                 } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                    spawnedBoss.put(playerUUID, true);
                 }
                 break;
             case "TroublesomeValkyrie":
@@ -81,6 +87,7 @@ public class MobHunterListener implements Listener {
                     return;
                 } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                    spawnedBoss.put(playerUUID, true);
                 }
                 break;
             case "BelligerentValkyrie":
@@ -88,6 +95,7 @@ public class MobHunterListener implements Listener {
                     return;
                 } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                    spawnedBoss.put(playerUUID, true);
                 }
                 break;
             case "TranscendedValkyrie":
@@ -95,6 +103,7 @@ public class MobHunterListener implements Listener {
                     return;
                 } else {
                     MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                    spawnedBoss.put(playerUUID, true);
                 }
                 break;
 
@@ -102,6 +111,11 @@ public class MobHunterListener implements Listener {
 
     }
 
+    @EventHandler
+    public void onMobHunterDeath(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+        UUID playerUUID = player.getUniqueId();
+    }
 
     @EventHandler
     public void playerFileCreation(PlayerJoinEvent event) {
