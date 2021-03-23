@@ -70,40 +70,35 @@ public class MobHunterListener implements Listener {
                 if (!(foundValue < wiseValkyrieKills)) {
                     return;
                 } else {
-                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
-                    spawnedBoss.put(playerUUID, true);
+                    onBossSpawn("Fenrir", location, playerUUID);
                 }
                 break;
             case "ZealousValkyrie":
                 if (!(foundValue < zealousValkyrieKills)) {
                     return;
                 } else {
-                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
-                    spawnedBoss.put(playerUUID, true);
+                    onBossSpawn("Fenrir", location, playerUUID);
                 }
                 break;
             case "TroublesomeValkyrie":
                 if (!(foundValue < troublesomeValkyrieKills)) {
                     return;
                 } else {
-                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
-                    spawnedBoss.put(playerUUID, true);
+                    onBossSpawn("Fenrir", location, playerUUID);
                 }
                 break;
             case "BelligerentValkyrie":
                 if (!(foundValue < belligerentValkyrieKills)) {
                     return;
                 } else {
-                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
-                    spawnedBoss.put(playerUUID, true);
+                    onBossSpawn("Fenrir", location, playerUUID);
                 }
                 break;
             case "TranscendedValkyrie":
                 if (!(foundValue < transcendedValkyrieKills)) {
                     return;
                 } else {
-                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
-                    spawnedBoss.put(playerUUID, true);
+                    onBossSpawn("Fenrir", location, playerUUID);
                 }
                 break;
 
