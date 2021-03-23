@@ -1,13 +1,18 @@
 package me.marshall.MarshallCore.MobHunter.Listeners;
 
 
+import io.lumine.xikage.mythicmobs.MythicMobs;
+import io.lumine.xikage.mythicmobs.adapters.AbstractLocation;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
+import io.lumine.xikage.mythicmobs.api.exceptions.InvalidMobTypeException;
 import io.lumine.xikage.mythicmobs.mobs.MythicMob;
 import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MobHunter.Menus.CancelMenu;
 import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
 import me.marshall.MarshallCore.MobHunter.MobHunter;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,9 +27,15 @@ import java.util.UUID;
 
 public class MobHunterListener implements Listener {
 
+    final int wiseValkyrieKills = 5;
+    final int zealousValkyrieKills = 2;
+    final int troublesomeValkyrieKills = 3;
+    final int belligerentValkyrieKills = 4;
+    final int transcendedValkyrieKills = 5;
+
 
     @EventHandler
-    public void onMobHunterKill(MythicMobDeathEvent event) {
+    public void onMobHunterKill(MythicMobDeathEvent event) throws InvalidMobTypeException {
         if (!(event.getKiller() instanceof Player)) {
             return;
         }
@@ -35,15 +46,51 @@ public class MobHunterListener implements Listener {
         }
         MythicMob mob = event.getMobType();
 
-        String foundValue = MobHunter.onGoingMobName.get(playerUUID);
+        String foundMob = MobHunter.onGoingMobName.get(playerUUID);
+        int foundValue = MobHunter.onGoingMobCount.get(playerUUID);
 
-        if (!foundValue.equals(mob.getInternalName())) {
+        if (!foundMob.equals(mob.getInternalName())) {
             return;
         }
 
         MobHunter.updateOnGoingContract(playerUUID);
+        Bukkit.broadcastMessage(MobHunter.onGoingMobCount + "");
 
-        // CODE FOR BOSS SPAWN
+        AbstractLocation mmLoc = event.getMob().getLocation();
+        double mobX = mmLoc.getX();
+        double mobY = mmLoc.getY();
+        double mobZ = mmLoc.getZ();
+        Location location = new Location(player.getWorld(), mobX, mobY, mobZ);
+
+        switch (foundMob) {
+            case "WiseValkyrie":
+                if (!(foundValue <= wiseValkyrieKills)) {
+                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                }
+                break;
+            case "ZealousValkyrie":
+                if (!(foundValue <= zealousValkyrieKills)) {
+                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                }
+                break;
+            case "TroublesomeValkyrie":
+                if (!(foundValue <= troublesomeValkyrieKills)) {
+                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                }
+                break;
+            case "BelligerentValkyrie":
+                if (!(foundValue <= belligerentValkyrieKills)) {
+                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                }
+                break;
+            case "TranscendedValkyrie":
+                if (!(foundValue <= transcendedValkyrieKills)) {
+                    MythicMobs.inst().getAPIHelper().spawnMythicMob("Fenrir", location);
+                }
+                break;
+
+        }
+
     }
 
 
