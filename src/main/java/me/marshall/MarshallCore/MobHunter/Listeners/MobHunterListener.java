@@ -10,6 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 
 public class MobHunterListener implements Listener {
@@ -30,9 +36,27 @@ public class MobHunterListener implements Listener {
 //    }
 
 
-
-
-
+    @EventHandler
+    public void playerFileCreation(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
+        Core plugin = Core.getInstance();
+        File dataFolder = plugin.getDataFolder();
+        File playerDataFolder = new File(dataFolder + "/PlayerData");
+        new BukkitRunnable() {
+            public void run() {
+                try {
+                    File playerFile = new File(playerDataFolder, playerUUID + ".yml");
+                    if (!playerFile.exists()) {
+                        playerFile.createNewFile();
+                        System.out.println("§8[§dMarshallCore§8] §aData file for " + player.getPlayerListName() + " created.");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.runTaskAsynchronously(plugin);
+    }
 
 
     @EventHandler
