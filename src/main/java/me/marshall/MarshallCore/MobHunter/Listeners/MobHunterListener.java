@@ -1,6 +1,8 @@
 package me.marshall.MarshallCore.MobHunter.Listeners;
 
 
+import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
+import io.lumine.xikage.mythicmobs.mobs.MythicMob;
 import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MobHunter.Menus.CancelMenu;
 import me.marshall.MarshallCore.MobHunter.Menus.MobHunterMenu;
@@ -21,19 +23,29 @@ import java.util.UUID;
 public class MobHunterListener implements Listener {
 
 
+    @EventHandler
+    public void onMobHunterKill(MythicMobDeathEvent event) {
+        if (!(event.getKiller() instanceof Player)) {
+            return;
+        }
+        Player player = (Player) event.getKiller();
+        UUID playerUUID = player.getUniqueId();
+        if (!(MobHunter.onGoingMobName.containsKey(playerUUID))) {
+            System.out.println("thisa");
+            return;
+        }
+        MythicMob mob = event.getMobType();
 
-//    public void onMobHunterKill(MythicMobDeathEvent event) {
-//        if (!(event.getKiller() instanceof Player)) {
-//            return;
-//        }
-//        Player player = (Player) event.getKiller();
-//        UUID playerUUID = player.getUniqueId();
-//        if (!(MobHunter.onGoingMobName.containsKey(playerUUID))) {
-//            return;
-//        }
-//        MythicMob mob = event.getMobType();
-//        //
-//    }
+        String foundValue = MobHunter.onGoingMobName.get(playerUUID);
+
+        if (!foundValue.equals(mob.getInternalName())) {
+            return;
+        }
+
+        MobHunter.updateOnGoingContract(playerUUID);
+
+        // CODE FOR BOSS SPAWN
+    }
 
 
     @EventHandler
