@@ -154,4 +154,9 @@ public class MobHunterListener implements Listener {
         }
 
     }
+
+    public void onBossSpawn(String mobName, Location location, UUID playerUUID) throws InvalidMobTypeException {
+        MythicMobs.inst().getAPIHelper().spawnMythicMob(mobName, location);
+        spawnedBoss.put(playerUUID, true);
+    }
 }
