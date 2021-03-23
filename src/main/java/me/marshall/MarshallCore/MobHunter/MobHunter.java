@@ -1,7 +1,5 @@
 package me.marshall.MarshallCore.MobHunter;
 
-import org.bukkit.entity.Player;
-
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -26,7 +24,7 @@ public class MobHunter {
         onGoingMobCount.put(playerUUID, 0);
     }
 
-    public static void updateOnGoingContract(UUID playerUUID, int amount) {
+    public static void updateOnGoingContract(UUID playerUUID) {
         onGoingMobCount.put(playerUUID, onGoingMobCount.get(playerUUID) + 1);
     }
 
