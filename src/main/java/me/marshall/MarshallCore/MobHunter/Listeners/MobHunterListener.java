@@ -26,12 +26,13 @@ import java.util.UUID;
 
 
 public class MobHunterListener implements Listener {
+    Core plugin = Core.getInstance();
 
-    final int wiseValkyrieKills = 5;
-    final int zealousValkyrieKills = 2;
-    final int troublesomeValkyrieKills = 3;
-    final int belligerentValkyrieKills = 4;
-    final int transcendedValkyrieKills = 5;
+    final int wiseValkyrieKills = plugin.getMobHunterConfig().getInt("wiseValkyrieKills");
+    final int zealousValkyrieKills = plugin.getMobHunterConfig().getInt("zealousValkyrieKills");
+    final int troublesomeValkyrieKills = plugin.getMobHunterConfig().getInt("troublesomeValkyrieKills");
+    final int belligerentValkyrieKills = plugin.getMobHunterConfig().getInt("belligerentValkyrieKills");
+    final int transcendedValkyrieKills = plugin.getMobHunterConfig().getInt("transcendedValkyrieKills");
 
 
     @EventHandler
@@ -98,7 +99,6 @@ public class MobHunterListener implements Listener {
     public void playerFileCreation(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         UUID playerUUID = player.getUniqueId();
-        Core plugin = Core.getInstance();
         File dataFolder = plugin.getDataFolder();
         File playerDataFolder = new File(dataFolder + "/PlayerData");
         new BukkitRunnable() {
