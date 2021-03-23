@@ -9,6 +9,7 @@ import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import me.marshall.MarshallCore.MobHunter.Commands.MobHunterCommand;
 import me.marshall.MarshallCore.MobHunter.Commands.MobHunterNPC;
 import me.marshall.MarshallCore.MobHunter.Listeners.MobHunterListener;
+import me.marshall.MarshallCore.MobHunter.Placeholder;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -60,6 +61,9 @@ public final class Core extends JavaPlugin {
         // CONFIGS
         plugin.saveDefaultConfig();
         createMobHunterConfig();
+
+        //PLACEHOLDERS
+        new Placeholder().register();
 
         //MENU LISTENER
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
