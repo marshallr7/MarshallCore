@@ -110,6 +110,16 @@ public class MobHunterListener implements Listener {
     public void onMobHunterDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         UUID playerUUID = player.getUniqueId();
+        if (!(MobHunter.onGoingMobCount.containsKey(playerUUID))) {
+            return;
+        }
+        if (spawnedBoss.get(playerUUID)) {
+            spawnedBoss.remove(playerUUID);
+            // Loop through mobs near player here
+            //remove boss mob
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fHunter&7] &cYou have failed the contract."));
+            MobHunter.removeOnGoingContract(playerUUID);
+        }
     }
 
     @EventHandler
@@ -121,11 +131,7 @@ public class MobHunterListener implements Listener {
         new BukkitRunnable() {
             public void run() {
                 try {
-                    File playerFile = new File(playerDataFolder, playerUUID + ".yml");
-                    if (!playerFile.exists()) {
-                        playerFile.createNewFile();
-                        System.out.println("§8[§dMarshallCore§8] §aData file for " + player.getPlayerListName() + " created.");
-                    }
+                    plugin.createCustomConfig(playerUUID, player.getPlayerListName());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
