@@ -185,7 +185,6 @@ public final class Core extends JavaPlugin {
             playerDataFile.getParentFile().mkdirs();
             playerDataFile.createNewFile();
             Bukkit.getServer().getConsoleSender().sendRawMessage(ChatColor.translateAlternateColorCodes('&', "&2Player data file created for: &f" + playerName));
-//            saveResource(playerUUID + ".yml", false);
         }
         playerConfig = new YamlConfiguration();
         playerConfig.set("MobHunter.ValkyrieExperience", 0);
