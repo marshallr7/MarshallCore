@@ -20,7 +20,6 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
@@ -125,13 +124,10 @@ public class MobHunterListener implements Listener {
     @EventHandler
     public void playerFileCreation(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        UUID playerUUID = player.getUniqueId();
-        File dataFolder = plugin.getDataFolder();
-        File playerDataFolder = new File(dataFolder + "/PlayerData");
         new BukkitRunnable() {
             public void run() {
                 try {
-                    plugin.createCustomConfig(playerUUID, player.getPlayerListName());
+                    plugin.createCustomConfig(player.getUniqueId(), player.getPlayerListName());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
