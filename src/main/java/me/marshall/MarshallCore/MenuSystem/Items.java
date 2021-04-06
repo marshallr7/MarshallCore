@@ -1,5 +1,6 @@
 package me.marshall.MarshallCore.MenuSystem;
 
+import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MobHunter.MobHunter;
 import me.marshall.MarshallCore.SkullCreator;
 import org.bukkit.ChatColor;
@@ -83,6 +84,22 @@ public class Items {
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.translateAlternateColorCodes('&', "&f"));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Click here to cancel your current contract"));
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    public static ItemStack mobHunterXPItem(UUID playerUUID, String mobName) {
+        ItemStack item = new ItemStack(Material.OAK_SIGN);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2Boss Level"));
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&f"));
+        Core plugin = Core.getInstance();
+        int exp = plugin.getPlayerFile(playerUUID).getInt("MobHunter.ValkyrieExperience");
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Current Boss Level: &e" + exp));
+
+
         itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);
         return item;
