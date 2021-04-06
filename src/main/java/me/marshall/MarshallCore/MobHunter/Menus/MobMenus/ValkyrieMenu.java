@@ -6,8 +6,6 @@ import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import me.marshall.MarshallCore.MobHunter.Menus.ConfirmMenu;
 import me.marshall.MarshallCore.MobHunter.MobHunter;
-import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
@@ -117,6 +115,7 @@ public class ValkyrieMenu extends Menu {
         inventory.setItem(26, Items.blackStainedGlass());
         //FOURTH ROW
         inventory.setItem(27, Items.blackStainedGlass());
+        inventory.setItem(26, Items.mobHunterXPItem(playerMenuUtility.getOwner().getUniqueId(), "Valkyrie"));
         inventory.setItem(29, Items.blackStainedGlass());
         inventory.setItem(30, Items.blackStainedGlass());
         inventory.setItem(32, Items.blackStainedGlass());
