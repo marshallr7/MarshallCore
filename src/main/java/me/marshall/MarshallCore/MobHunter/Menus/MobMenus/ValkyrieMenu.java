@@ -115,7 +115,7 @@ public class ValkyrieMenu extends Menu {
         inventory.setItem(26, Items.blackStainedGlass());
         //FOURTH ROW
         inventory.setItem(27, Items.blackStainedGlass());
-        inventory.setItem(26, Items.mobHunterXPItem(playerMenuUtility.getOwner().getUniqueId(), "Valkyrie"));
+        inventory.setItem(28, Items.mobHunterXPItem(playerMenuUtility.getOwner().getUniqueId(), "Valkyrie"));
         inventory.setItem(29, Items.blackStainedGlass());
         inventory.setItem(30, Items.blackStainedGlass());
         inventory.setItem(32, Items.blackStainedGlass());
