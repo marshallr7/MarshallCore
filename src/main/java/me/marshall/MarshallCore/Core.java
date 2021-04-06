@@ -12,6 +12,7 @@ import me.marshall.MarshallCore.MobHunter.Listeners.MobHunterListener;
 import me.marshall.MarshallCore.MobHunter.Placeholder;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -22,12 +23,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
 
 public final class Core extends JavaPlugin {
 
     private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
     private static Economy econ = null;
     private static Core plugin;
+
+    private File playerDataFile;
+    private FileConfiguration playerConfig;
 
     private File customMobHunterFile;
     private FileConfiguration customMobHunterConfig;
@@ -162,5 +167,38 @@ public final class Core extends JavaPlugin {
         }
     }
 
+    public FileConfiguration getPlayerFile(UUID playerUUID) {
+        File file = new File(getDataFolder() + "/PlayerData", playerUUID + ".yml");
+        FileConfiguration fileConfig = new YamlConfiguration();
+        try {
+            fileConfig.load(file);
+            return fileConfig;
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+        return fileConfig;
+    }
 
+    public void createCustomConfig(UUID playerUUID, String playerName) throws IOException {
+        playerDataFile = new File(getDataFolder() + "/PlayerData", playerUUID + ".yml");
+        if (!playerDataFile.exists()) {
+            playerDataFile.getParentFile().mkdirs();
+            playerDataFile.createNewFile();
+            Bukkit.getServer().getConsoleSender().sendRawMessage(ChatColor.translateAlternateColorCodes('&', "&2Player data file created for: &f" + playerName));
+//            saveResource(playerUUID + ".yml", false);
+        }
+        playerConfig = new YamlConfiguration();
+        playerConfig.set("MobHunter.ValkyrieExperience", 0);
+        playerConfig.set("MobHunter.OdinExperience", 0);
+        playerConfig.set("MobHunter.YmirExperience", 0);
+        playerConfig.set("MobHunter.DraugrExperience", 0);
+        playerConfig.set("MobHunter.LokiExperience", 0);
+        try {
+            playerConfig.load(playerDataFile);
+            Bukkit.getServer().getConsoleSender().sendRawMessage(ChatColor.translateAlternateColorCodes('&', "&2Successfully loaded config for: &f" + playerName));
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+        playerConfig.save(playerDataFile);
+    }
 }
