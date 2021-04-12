@@ -13,4 +13,9 @@ public class Gems {
         playerBalances.replace(playerUUID, updatedBal);
     }
 
+    public void removeGems(UUID playerUUID, Integer amount) {
+        Integer currentBal = playerBalances.get(playerUUID);
+        Integer updatedBal = currentBal - amount;
+        playerBalances.replace(playerUUID, updatedBal);
+    }
 }
