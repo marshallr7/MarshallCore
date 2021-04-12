@@ -6,14 +6,32 @@ import me.marshall.MarshallCore.SkullCreator;
 import me.marshall.MarshallCore.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class Items {
+
+
+    public static ItemStack modifierItem(String modifierType, String[] loreInfo) {
+        ItemStack item = new ItemStack(Material.NAME_TAG);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', modifierType + " Modifier"));
+        List<String> lore = new ArrayList<>();
+        for (int i = 0; i <= loreInfo.length - 1; i++) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', loreInfo[i]));
+        }
+        NamespacedKey key = new NamespacedKey(Core.getInstance(), "CustomModifier");
+        itemMeta.getPersistentDataContainer().set(key, PersistentDataType.STRING, modifierType);
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
 
     public static ItemStack blackStainedGlass() {
         ItemStack blackStainedGlassPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
@@ -126,7 +144,7 @@ public class Items {
             lore.add(ChatColor.translateAlternateColorCodes('&', "&f"));
             int nextLevel = level + 1;
             lore.add(ChatColor.translateAlternateColorCodes('&', "&7Experience to level " + nextLevel + ":"));
-            int percentage;
+            double percentage;
             switch (level) {
                 case 1:
                     percentage = Utils.percentage(exp, 150);
@@ -138,7 +156,7 @@ public class Items {
                     percentage = Utils.percentage(exp, 5000);
                     break;
                 case 4:
-                    percentage = 40;
+                    percentage = Utils.percentage(exp, 25000);
                     break;
                 case 5:
                     percentage = Utils.percentage(exp, 100000);
