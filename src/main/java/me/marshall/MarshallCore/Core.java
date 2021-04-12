@@ -4,6 +4,10 @@ import me.marshall.MarshallCore.Bar.Commands.BarCommand;
 import me.marshall.MarshallCore.Bar.Commands.GambleCommand;
 import me.marshall.MarshallCore.Bar.Listeners.BarListener;
 import me.marshall.MarshallCore.Bar.Listeners.GambleListener;
+import me.marshall.MarshallCore.Cosmetics.Modifiers.NickCommands;
+import me.marshall.MarshallCore.Cosmetics.Modifiers.NickListener;
+import me.marshall.MarshallCore.Cosmetics.Modifiers.PrefixCommands;
+import me.marshall.MarshallCore.Cosmetics.Modifiers.PrefixListener;
 import me.marshall.MarshallCore.MenuSystem.Listeners.MenuListener;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import me.marshall.MarshallCore.MobHunter.Commands.MobHunterCommand;
@@ -87,6 +91,16 @@ public final class Core extends JavaPlugin {
             Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aBar Gamble Enabled");
         } else {
             Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cBar Gamble is set to disabled in the config and will not load.");
+        }
+        //COSMETICS
+        if (plugin.getConfig().getBoolean("cosmetics")) {
+            getCommand("nickitem").setExecutor(new NickCommands());
+            getCommand("prefixitem").setExecutor(new PrefixCommands());
+            getServer().getPluginManager().registerEvents(new PrefixListener(), this);
+            getServer().getPluginManager().registerEvents(new NickListener(), this);
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aCosmetics Enabled");
+        } else {
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cCosmetics are set to disabled in the config and will not load.");
         }
         // MOB HUNTER
         if (plugin.getConfig().getBoolean("mobhunter")) {
