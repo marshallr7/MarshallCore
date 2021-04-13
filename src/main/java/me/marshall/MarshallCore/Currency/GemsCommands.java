@@ -26,7 +26,7 @@ public class GemsCommands implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("give")) {
                     Player target = Bukkit.getPlayer(args[1]);
                     if (!target.isOnline()) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThe target user is not online."));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fGems&7] &cThe target user is not online."));
                     } else {
                         int amount = Integer.parseInt(args[2]);
                         gems.giveGems(target.getUniqueId(), amount);
@@ -35,7 +35,7 @@ public class GemsCommands implements CommandExecutor {
                 } else if (args[0].equalsIgnoreCase("remove")) {
                     Player target = Bukkit.getPlayer(args[1]);
                     if (!target.isOnline()) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThe target user is not online."));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fGems&7] &cThe target user is not online."));
                     } else {
                         int amount = Integer.parseInt(args[2]);
                         gems.removeGems(target.getUniqueId(), amount);
