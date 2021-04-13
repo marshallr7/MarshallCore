@@ -21,42 +21,32 @@ public class GemsCommands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Gems gems = new Gems();
-        if (args[0].equalsIgnoreCase("give")) {
-            if (sender.hasPermission("teldaria.gems.give")) {
-                if (args.length != 3) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cCorrect command usage: /gems give <player> <amount>"));
-                } else {
+        if (args.length == 3) {
+            if (sender.hasPermission("teldaria.gems")) {
+                if (args[0].equalsIgnoreCase("give")) {
                     Player target = Bukkit.getPlayer(args[1]);
                     if (!target.isOnline()) {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThe target user is not online."));
                     } else {
                         int amount = Integer.parseInt(args[2]);
                         gems.giveGems(target.getUniqueId(), amount);
+                        target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fGems&7] &fYou have received &2" + amount + " &fGems"));
                     }
-                }
-            } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou do not have permission teldaria.gems.give"));
-            }
-        } else if (args[0].equalsIgnoreCase("remove")) {
-            if (sender.hasPermission("teldaria.gems.remove")) {
-                if (args.length != 3) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cCorrect command usage: /gems remove <player> <amount>"));
-                } else {
+                } else if (args[0].equalsIgnoreCase("remove")) {
                     Player target = Bukkit.getPlayer(args[1]);
                     if (!target.isOnline()) {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cThe target user is not online."));
                     } else {
                         int amount = Integer.parseInt(args[2]);
                         gems.removeGems(target.getUniqueId(), amount);
+                        target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fGems&7] &2" + amount + " &fGems have been removed from your account."));
                     }
                 }
-            } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou do not have permission teldaria.gems.remove"));
             }
         } else {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&fYou currently have &2" + gems.getGems(player.getUniqueId()) + " &fgems"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&fYou currently have &2" + gems.getGemsHashMap(player.getUniqueId()) + " &fgems"));
             }
         }
 
