@@ -16,7 +16,7 @@ public class BaseListeners implements Listener {
 
 
     @EventHandler
-    public void playerFileCreation(PlayerJoinEvent event) {
+    public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         UUID playerUUID = player.getUniqueId();
 
@@ -34,6 +34,5 @@ public class BaseListeners implements Listener {
         Gems gems = new Gems();
         int gemsBalance = gems.getGems(playerUUID);
         Gems.playerBalances.put(playerUUID, gemsBalance);
-
     }
 }
