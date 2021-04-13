@@ -8,6 +8,7 @@ import me.marshall.MarshallCore.Cosmetics.Modifiers.NickCommands;
 import me.marshall.MarshallCore.Cosmetics.Modifiers.NickListener;
 import me.marshall.MarshallCore.Cosmetics.Modifiers.PrefixCommands;
 import me.marshall.MarshallCore.Cosmetics.Modifiers.PrefixListener;
+import me.marshall.MarshallCore.Currency.GemsCommands;
 import me.marshall.MarshallCore.MenuSystem.Listeners.MenuListener;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import me.marshall.MarshallCore.MobHunter.Commands.MobHunterCommand;
@@ -74,6 +75,8 @@ public final class Core extends JavaPlugin {
         //PLACEHOLDERS
         new Placeholder().register();
 
+        //BASE LISTENER
+        getServer().getPluginManager().registerEvents(new BaseListeners(), this);
         //MENU LISTENER
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
         // BAR
@@ -101,6 +104,12 @@ public final class Core extends JavaPlugin {
             Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aCosmetics Enabled");
         } else {
             Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cCosmetics are set to disabled in the config and will not load.");
+        }
+        //CURRENCY
+        if (plugin.getConfig().getBoolean("currency")) {
+            getCommand("gems").setExecutor(new GemsCommands());
+        } else {
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cCurrent is set to disabled in the config and will not load.");
         }
         // MOB HUNTER
         if (plugin.getConfig().getBoolean("mobhunter")) {
