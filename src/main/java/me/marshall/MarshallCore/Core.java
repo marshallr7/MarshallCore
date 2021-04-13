@@ -108,6 +108,7 @@ public final class Core extends JavaPlugin {
         //CURRENCY
         if (plugin.getConfig().getBoolean("currency")) {
             getCommand("gems").setExecutor(new GemsCommands());
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aCurrency Enabled");
         } else {
             Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cCurrent is set to disabled in the config and will not load.");
         }
