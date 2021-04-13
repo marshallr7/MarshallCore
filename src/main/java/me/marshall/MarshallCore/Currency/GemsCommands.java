@@ -46,7 +46,7 @@ public class GemsCommands implements CommandExecutor {
         } else {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&fYou currently have &2" + gems.getGemsHashMap(player.getUniqueId()) + " &fgems"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fGems&7] &fYou currently have &2" + gems.getGemsHashMap(player.getUniqueId()) + " &fgems"));
             }
         }
 
