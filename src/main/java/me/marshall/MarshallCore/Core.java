@@ -201,11 +201,13 @@ public final class Core extends JavaPlugin {
             Bukkit.getServer().getConsoleSender().sendRawMessage(ChatColor.translateAlternateColorCodes('&', "&2Player data file created for: &f" + playerName));
         }
         playerConfig = new YamlConfiguration();
+        playerConfig.set("Gems", 0);
         playerConfig.set("MobHunter.ValkyrieExperience", 0);
         playerConfig.set("MobHunter.OdinExperience", 0);
         playerConfig.set("MobHunter.YmirExperience", 0);
         playerConfig.set("MobHunter.DraugrExperience", 0);
         playerConfig.set("MobHunter.LokiExperience", 0);
+
         try {
             playerConfig.load(playerDataFile);
             Bukkit.getServer().getConsoleSender().sendRawMessage(ChatColor.translateAlternateColorCodes('&', "&2Successfully loaded config for: &f" + playerName));
