@@ -19,7 +19,7 @@ public class Gems {
         Integer updatedBal = currentBal + amount;
         playerBalances.replace(playerUUID, updatedBal);
         Core plugin = Core.getInstance();
-        plugin.getPlayerFile(playerUUID).set("Gems", Gems.playerBalances.get(playerUUID));
+        plugin.updatePlayerFile(playerUUID, "Gems", Gems.playerBalances.get(playerUUID));
     }
 
     public void removeGems(UUID playerUUID, Integer amount) {
@@ -27,11 +27,15 @@ public class Gems {
         Integer updatedBal = currentBal - amount;
         playerBalances.replace(playerUUID, updatedBal);
         Core plugin = Core.getInstance();
-        plugin.getPlayerFile(playerUUID).set("Gems", Gems.playerBalances.get(playerUUID));
+        plugin.updatePlayerFile(playerUUID, "Gems", Gems.playerBalances.get(playerUUID));
     }
 
     public int getGems(UUID playerUUID) {
         Core plugin = Core.getInstance();
         return plugin.getPlayerFile(playerUUID).getInt("Gems");
+    }
+
+    public int getGemsHashMap(UUID playerUUID) {
+        return playerBalances.get(playerUUID);
     }
 }
