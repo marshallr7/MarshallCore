@@ -17,10 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -119,20 +116,6 @@ public class MobHunterListener implements Listener {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&2t&fHunter&7] &cYou have failed the contract."));
             MobHunter.removeOnGoingContract(playerUUID);
         }
-    }
-
-    @EventHandler
-    public void playerFileCreation(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        new BukkitRunnable() {
-            public void run() {
-                try {
-                    plugin.createCustomConfig(player.getUniqueId(), player.getPlayerListName());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.runTaskAsynchronously(plugin);
     }
 
 
