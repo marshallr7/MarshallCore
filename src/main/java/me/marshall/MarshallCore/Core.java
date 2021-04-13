@@ -203,6 +203,19 @@ public final class Core extends JavaPlugin {
         return fileConfig;
     }
 
+    public void updatePlayerFile(UUID playerUUID, String branch, int value) {
+        File file = new File(getDataFolder() + "/PlayerData", playerUUID + ".yml");
+        FileConfiguration fileConfig = getPlayerFile(playerUUID);
+        fileConfig.set(branch, value);
+        try {
+            fileConfig.save(file);
+        } catch (IOException e) {
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUnable to save" + playerUUID + ".yml"));
+        }
+
+
+    }
+
     public void createCustomConfig(UUID playerUUID, String playerName) throws IOException {
         playerDataFile = new File(getDataFolder() + "/PlayerData", playerUUID + ".yml");
         if (!playerDataFile.exists()) {
