@@ -32,6 +32,6 @@ public class Gems {
 
     public int getGems(UUID playerUUID) {
         Core plugin = Core.getInstance();
-        return plugin.getPlayerFile(playerUUID).getInt("gems");
+        return plugin.getPlayerFile(playerUUID).getInt("Gems");
     }
 }
