@@ -8,22 +8,30 @@ import java.util.UUID;
 public class Gems {
 
 
-    HashMap<UUID, Integer> playerBalances = new HashMap<>();
+    public static HashMap<UUID, Integer> playerBalances = new HashMap<>();
+
+    public static HashMap<UUID, Integer> getBalances() {
+        return playerBalances;
+    }
 
     public void giveGems(UUID playerUUID, Integer amount) {
         Integer currentBal = playerBalances.get(playerUUID);
         Integer updatedBal = currentBal + amount;
         playerBalances.replace(playerUUID, updatedBal);
+        Core plugin = Core.getInstance();
+        plugin.getPlayerFile(playerUUID).set("Gems", Gems.playerBalances.get(playerUUID));
     }
 
     public void removeGems(UUID playerUUID, Integer amount) {
         Integer currentBal = playerBalances.get(playerUUID);
         Integer updatedBal = currentBal - amount;
         playerBalances.replace(playerUUID, updatedBal);
+        Core plugin = Core.getInstance();
+        plugin.getPlayerFile(playerUUID).set("Gems", Gems.playerBalances.get(playerUUID));
     }
 
-    public void getGems(UUID playerUUID) {
+    public int getGems(UUID playerUUID) {
         Core plugin = Core.getInstance();
-        int gems = plugin.getPlayerFile(playerUUID).getInt("gems");
+        return plugin.getPlayerFile(playerUUID).getInt("gems");
     }
 }
