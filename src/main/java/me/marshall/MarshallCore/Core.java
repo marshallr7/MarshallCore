@@ -15,6 +15,7 @@ import me.marshall.MarshallCore.MobHunter.Commands.MobHunterCommand;
 import me.marshall.MarshallCore.MobHunter.Commands.MobHunterNPC;
 import me.marshall.MarshallCore.MobHunter.Listeners.MobHunterListener;
 import me.marshall.MarshallCore.MobHunter.Placeholder;
+import me.marshall.MarshallCore.Store.StoreCommands;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -121,10 +122,13 @@ public final class Core extends JavaPlugin {
         } else {
             Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cMob Hunter is set to disabled in the config and will not load.");
         }
-
-
-
-
+        // STORE
+        if (plugin.getConfig().getBoolean("store")) {
+            getCommand("buy").setExecutor(new StoreCommands());
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aStore Enabled");
+        } else {
+            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cStore is set to disabled in the config and will not load.");
+        }
 
 
         //Vault Check
