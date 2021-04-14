@@ -193,4 +193,18 @@ public class Items {
         item.setItemMeta(itemMeta);
         return item;
     }
+
+    //STORE ITEMS
+    public static ItemStack storeItem(Material mat, String name, int customDataValue) {
+        ItemStack item = new ItemStack(mat);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2&l" + name));
+        List<String> lore = new ArrayList<>();
+        itemMeta.setCustomModelData(customDataValue);
+        lore.add("");
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Click here to view " + name));
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
 }
