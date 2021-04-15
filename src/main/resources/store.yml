@@ -1,0 +1,18 @@
+ranks:
+  lord:
+    1:
+      Name: "example"
+      command: "example command"
+    2:
+      Name: "example"
+      command: "example command"
+  outlaw:
+    - "example command"
+  dealer:
+    - "example command"
+  hawker:
+    - "example command"
+  raider:
+    - "example command"
+  hero:
+    - "example command"
