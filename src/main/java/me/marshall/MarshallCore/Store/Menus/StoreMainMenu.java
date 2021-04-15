@@ -1,9 +1,11 @@
 package me.marshall.MarshallCore.Store.Menus;
 
+import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MenuSystem.Items;
 import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class StoreMainMenu extends Menu {
@@ -24,7 +26,16 @@ public class StoreMainMenu extends Menu {
 
     @Override
     public void handleMenu(InventoryClickEvent event) {
+        Player player = (Player) event.getWhoClicked();
 
+        switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
+            case "Crate Keys":
+                break;
+            case "§2§lRanks":
+                Ranks ranks = new Ranks(Core.getPlayerMenuUtility(player));
+                ranks.open();
+                break;
+        }
     }
 
     @Override
