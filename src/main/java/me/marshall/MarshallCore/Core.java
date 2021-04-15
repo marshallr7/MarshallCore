@@ -43,6 +43,9 @@ public final class Core extends JavaPlugin {
     private File customMobHunterFile;
     private FileConfiguration customMobHunterConfig;
 
+    private File customStoreFile;
+    private FileConfiguration customStoreConfig;
+
     public static Core getInstance() {
         return plugin;
     }
@@ -179,7 +182,6 @@ public final class Core extends JavaPlugin {
     public FileConfiguration getMobHunterConfig() {
         return this.customMobHunterConfig;
     }
-
     private void createMobHunterConfig() {
         customMobHunterFile = new File(getDataFolder(), "/mobhunter.yml");
         if (!customMobHunterFile.exists()) {
@@ -190,6 +192,25 @@ public final class Core extends JavaPlugin {
         customMobHunterConfig = new YamlConfiguration();
         try {
             customMobHunterConfig.load(customMobHunterFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public FileConfiguration getStoreConfig() {
+        return this.customStoreConfig;
+    }
+
+    private void createStoreConfig() {
+        customStoreFile = new File(getDataFolder(), "/store.yml");
+        if (!customStoreFile.exists()) {
+            customStoreFile.getParentFile().mkdirs();
+            saveResource("store.yml", false);
+        }
+
+        playerConfig = new YamlConfiguration();
+        try {
+            customStoreConfig.load(customStoreFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
