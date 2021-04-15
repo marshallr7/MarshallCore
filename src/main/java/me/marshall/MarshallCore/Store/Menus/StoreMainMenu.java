@@ -14,7 +14,7 @@ public class StoreMainMenu extends Menu {
 
     @Override
     public String getMenuName() {
-        return "Store";
+        return "Gem Shop";
     }
 
     @Override
