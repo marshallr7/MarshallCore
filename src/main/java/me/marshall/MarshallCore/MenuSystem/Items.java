@@ -207,4 +207,13 @@ public class Items {
         item.setItemMeta(itemMeta);
         return item;
     }
+
+
+    public static ItemStack closeItem() {
+        ItemStack item = new ItemStack(Material.BARRIER);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&cClose"));
+        item.setItemMeta(itemMeta);
+        return item;
+    }
 }
