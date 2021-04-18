@@ -4,6 +4,7 @@ import me.marshall.MarshallCore.MenuSystem.Items;
 import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
@@ -50,7 +51,7 @@ public class SurvivalMenu extends Menu {
         inventory.setItem(10, Items.blackStainedGlass());
         inventory.setItem(11, Items.blackStainedGlass());
         inventory.setItem(12, Items.blackStainedGlass());
-        inventory.setItem(13, Items.playerHead(playerMenuUtility.getOwner().getUniqueId()));
+        inventory.setItem(13, Items.survivalMenuHead(playerMenuUtility.getOwner().getUniqueId()));
         inventory.setItem(14, Items.blackStainedGlass());
         inventory.setItem(15, Items.blackStainedGlass());
         inventory.setItem(16, Items.blackStainedGlass());
@@ -58,22 +59,22 @@ public class SurvivalMenu extends Menu {
 
         //THIRD ROW
         inventory.setItem(18, Items.blackStainedGlass());
-        // 19 skills
-        //20 ranks
-        // 21 toolbelt
-        // 22 quest log
-        // 23 settings
-        // 24 ender chest
-        // 25 homes
+        inventory.setItem(19, Items.survivalMenuItem(Material.BOOK, "Skills", new String[]{"", "&eClick here to view your skill progress"}));
+        inventory.setItem(20, Items.survivalMenuItem(Material.DIAMOND, "In-Game Ranks", new String[]{"", "&eClick here to view in-game ranks"}));
+        inventory.setItem(21, Items.survivalMenuItem(Material.CHEST_MINECART, "Tool Belt", new String[]{"", "&eClick here to access your tool belt"}));
+        inventory.setItem(22, Items.survivalMenuItem(Material.PAPER, "Quest Log", new String[]{"", "&eClick here to view quest progress"}));
+        inventory.setItem(23, Items.survivalMenuItem(Material.REPEATER, "Settings", new String[]{"", "&eClick here to modify your settings"}));
+        inventory.setItem(24, Items.survivalMenuItem(Material.ENDER_CHEST, "Ender Chest", new String[]{"", "&eClick here to access your Ender Chest"}));
+        inventory.setItem(25, Items.survivalMenuItem(Material.ENDER_PEARL, "Homes", new String[]{"", "&eClick here to view your homes"}));
         inventory.setItem(26, Items.blackStainedGlass());
 
         //FOURTH ROW
         inventory.setItem(27, Items.blackStainedGlass());
         inventory.setItem(28, Items.blackStainedGlass());
         inventory.setItem(29, Items.blackStainedGlass());
-        // 30 bestiary
-        // 31 crafting bench
-        // 32 cosmetics
+        inventory.setItem(30, Items.survivalMenuItem(Material.WRITABLE_BOOK, "Bestiary", new String[]{"", "&eClick here to view your bestiary progress"}));
+        inventory.setItem(31, Items.survivalMenuItem(Material.CRAFTING_TABLE, "Crafting Bench", new String[]{"", "&eClick here to craft"}));
+        inventory.setItem(32, Items.survivalCosmeticsItem());
         inventory.setItem(33, Items.blackStainedGlass());
         inventory.setItem(34, Items.blackStainedGlass());
         inventory.setItem(35, Items.blackStainedGlass());
