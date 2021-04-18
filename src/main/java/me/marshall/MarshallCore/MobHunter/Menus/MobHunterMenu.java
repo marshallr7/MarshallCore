@@ -47,9 +47,9 @@ public class MobHunterMenu extends Menu implements Listener {
                 DraugrMenu draugrMenu = new DraugrMenu(Core.getPlayerMenuUtility(player));
                 draugrMenu.open();
                 break;
-            case "§f§lNornir":
-                NornirMenu nornirMenu = new NornirMenu(Core.getPlayerMenuUtility(player));
-                nornirMenu.open();
+            case "§f§lLoki":
+                LokiMenu lokiMenu = new LokiMenu(Core.getPlayerMenuUtility(player));
+                lokiMenu.open();
                 break;
 
 
