@@ -4,6 +4,7 @@ import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MobHunter.MobHunter;
 import me.marshall.MarshallCore.SkullCreator;
 import me.marshall.MarshallCore.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -215,5 +216,17 @@ public class Items {
         itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&cClose"));
         item.setItemMeta(itemMeta);
         return item;
+    }
+
+    public static ItemStack playerHead(UUID playerUUID) {
+        ItemStack skull = SkullCreator.itemFromUuid(playerUUID);
+        ItemMeta meta = skull.getItemMeta();
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2" + Bukkit.getPlayer(playerUUID).getPlayerListName()));
+        List<String> lore = new ArrayList<>();
+        lore.add("");
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&eClick here to view your profile"));
+        meta.setLore(lore);
+        skull.setItemMeta(meta);
+        return skull;
     }
 }
