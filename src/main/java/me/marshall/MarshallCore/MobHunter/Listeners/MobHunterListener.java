@@ -33,6 +33,9 @@ public class MobHunterListener implements Listener {
 
     public HashMap<UUID, Boolean> spawnedBoss = new HashMap<>();
 
+    enum Valkyrie {
+        //mobs
+    }
 
     @EventHandler
     public void onMobHunterKill(MythicMobDeathEvent event) throws InvalidMobTypeException {
