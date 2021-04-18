@@ -4,14 +4,14 @@ import me.marshall.MarshallCore.MenuSystem.Menu;
 import me.marshall.MarshallCore.MenuSystem.PlayerMenuUtility;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class NornirMenu extends Menu {
-    public NornirMenu(PlayerMenuUtility playerMenuUtility) {
+public class LokiMenu extends Menu {
+    public LokiMenu(PlayerMenuUtility playerMenuUtility) {
         super(playerMenuUtility);
     }
 
     @Override
     public String getMenuName() {
-        return "Nornir Contracts";
+        return "Loki Contracts";
     }
 
     @Override
