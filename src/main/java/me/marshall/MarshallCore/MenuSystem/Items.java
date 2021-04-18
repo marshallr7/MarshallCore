@@ -1,5 +1,6 @@
 package me.marshall.MarshallCore.MenuSystem;
 
+import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import me.marshall.MarshallCore.Core;
 import me.marshall.MarshallCore.MobHunter.MobHunter;
 import me.marshall.MarshallCore.SkullCreator;
@@ -213,7 +214,7 @@ public class Items {
     public static ItemStack closeItem() {
         ItemStack item = new ItemStack(Material.BARRIER);
         ItemMeta itemMeta = item.getItemMeta();
-        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&cClose"));
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lClose"));
         item.setItemMeta(itemMeta);
         return item;
     }
@@ -243,4 +244,16 @@ public class Items {
         return item;
     }
 
+    public static ItemStack survivalCosmeticsItem() {
+        HeadDatabaseAPI api = new HeadDatabaseAPI();
+        ItemStack item = api.getItemHead("1906");
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2&lCosmetics"));
+        List<String> lore = new ArrayList<>();
+        lore.add("");
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&eClick here to modify your cosmetics"));
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        return item;
+    }
 }
