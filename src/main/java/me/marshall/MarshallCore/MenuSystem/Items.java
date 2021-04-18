@@ -244,14 +244,16 @@ public class Items {
         return item;
     }
 
-    public static ItemStack survivalCosmeticsItem() {
+    public static ItemStack survivalMenuHeadItem(String headID, String name, String[] loreLines) {
         HeadDatabaseAPI api = new HeadDatabaseAPI();
-        ItemStack item = api.getItemHead("1906");
+        ItemStack item = api.getItemHead(headID);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2&lCosmetics"));
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2&l" + name));
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&eClick here to modify your cosmetics"));
+        for (int i = 0; i <= loreLines.length - 1; i++) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', loreLines[i]));
+        }
         meta.setLore(lore);
         item.setItemMeta(meta);
         return item;
