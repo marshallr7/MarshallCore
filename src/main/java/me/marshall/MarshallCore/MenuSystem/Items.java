@@ -218,10 +218,10 @@ public class Items {
         return item;
     }
 
-    public static ItemStack playerHead(UUID playerUUID) {
+    public static ItemStack survivalMenuHead(UUID playerUUID) {
         ItemStack skull = SkullCreator.itemFromUuid(playerUUID);
         ItemMeta meta = skull.getItemMeta();
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2" + Bukkit.getPlayer(playerUUID).getPlayerListName()));
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2&l" + Bukkit.getPlayer(playerUUID).getPlayerListName()));
         List<String> lore = new ArrayList<>();
         lore.add("");
         lore.add(ChatColor.translateAlternateColorCodes('&', "&eClick here to view your profile"));
@@ -229,4 +229,18 @@ public class Items {
         skull.setItemMeta(meta);
         return skull;
     }
+
+    public static ItemStack survivalMenuItem(Material itemType, String name, String[] loreLines) {
+        ItemStack item = new ItemStack(itemType);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2&l" + name));
+        List<String> lore = new ArrayList<>();
+        for (int i = 0; i <= loreLines.length - 1; i++) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', loreLines[i]));
+        }
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        return item;
+    }
+
 }
