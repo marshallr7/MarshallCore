@@ -15,7 +15,6 @@ import me.marshall.MarshallCore.MobHunter.Commands.MobHunterCommand;
 import me.marshall.MarshallCore.MobHunter.Commands.MobHunterNPC;
 import me.marshall.MarshallCore.MobHunter.Listeners.MobHunterListener;
 import me.marshall.MarshallCore.MobHunter.Placeholder;
-import me.marshall.MarshallCore.Store.StoreCommands;
 import me.marshall.MarshallCore.SurvivalMenu.SurvivalMenuListener;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -126,13 +125,6 @@ public final class Core extends JavaPlugin {
         } else {
             Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cMob Hunter is set to disabled in the config and will not load.");
         }
-        // STORE
-        if (plugin.getConfig().getBoolean("store")) {
-            getCommand("buy").setExecutor(new StoreCommands());
-            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §aStore Enabled");
-        } else {
-            Bukkit.getConsoleSender().sendRawMessage("§8[§dMarshallCore§8] §cStore is set to disabled in the config and will not load.");
-        }
 
         getServer().getPluginManager().registerEvents(new SurvivalMenuListener(), this);
 
@@ -240,8 +232,6 @@ public final class Core extends JavaPlugin {
         } catch (IOException e) {
             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUnable to save" + playerUUID + ".yml"));
         }
-
-
     }
 
     public void createCustomConfig(UUID playerUUID, String playerName) throws IOException {
